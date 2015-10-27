@@ -141,9 +141,9 @@ module.exports = function(grunt) {
                     src : ['style.css', 'assets/js/*.js', 'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}']
                 },
                 options: {
-                    proxy: "local.dev",
+                    proxy: "wordpress.local",
                     watchTask: true,
-                    browser: "google chrome"
+                    browser: "google-chrome"
                 }
             }
         },
@@ -175,11 +175,14 @@ module.exports = function(grunt) {
 
     // Load in `grunt-spritesmith`
     grunt.loadNpmTasks('grunt-spritesmith');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
     // rename tasks
     grunt.renameTask('rsync', 'deploy');
 
     // register task
-    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'imagemin', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'imagemin', 'watch']);
+    grunt.registerTask('bs', ['browserSync', 'watch']);
 
 };
